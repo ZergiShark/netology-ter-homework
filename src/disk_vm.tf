@@ -19,12 +19,15 @@ resource "yandex_compute_instance" "storage" {
 	}
   }
 
+  # Ошибка в том, что ${secondary_disk.key} и ${yandex_compute_disk.stor.*.id} позваляли добавлять любые значения включая цифры, 
+# исправленный вариант выглядит так:
   dynamic "secondary_disk" {
-   for_each = "${yandex_compute_disk.stor.*.id}"
-   content {
- 	disk_id = yandex_compute_disk.stor["${secondary_disk.key}"].id
-   }
+  for_each = yandex_compute_disk.stor.*.id
+  content {
+    disk_id = yandex_compute_disk.stor[secondary_disk.key].id
   }
+}
+
   network_interface {
 	subnet_id = yandex_vpc_subnet.develop.id
 	nat   	= true
