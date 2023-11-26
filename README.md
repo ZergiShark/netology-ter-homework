@@ -129,6 +129,9 @@ resource "yandex_compute_instance" "storage" {
 	}
   }
 
+# Ошибка в том, что ${secondary_disk.key} и ${yandex_compute_disk.stor.*.id} позваляли добавлять любые значения включая цифры, 
+# исправленный вариант выглядит так:
+
   dynamic "secondary_disk" {
   for_each = yandex_compute_disk.stor.*.id
   content {
