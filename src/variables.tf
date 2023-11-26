@@ -19,6 +19,7 @@ variable "default_zone" {
   default     = "ru-central1-a"
   description = "https://cloud.yandex.ru/docs/overview/concepts/geo-scope"
 }
+
 variable "default_cidr" {
   type        = list(string)
   default     = ["10.0.1.0/24"]
@@ -29,4 +30,16 @@ variable "vpc_name" {
   type        = string
   default     = "develop"
   description = "VPC network&subnet name"
+}
+
+variable "image_id" {
+  default = "fd8g64rcu9fq5kpfqls0"
+}
+
+variable "subnet_id" {
+  default = yandex_vpc_subnet.develop.id
+}
+
+variable "ssh_key_path" {
+  default = "~/.ssh/id_rsa.pub"
 }
