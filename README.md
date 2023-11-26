@@ -209,4 +209,15 @@ null_resource.web_hosts_provision (local-exec): storage                    : ok=
 null_resource.web_hosts_provision (local-exec): vm-1                       : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 null_resource.web_hosts_provision (local-exec): vm-2                       : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
+### Дополнение к ДЗ:
+```
+# Ошибка в том, что ${secondary_disk.key} и ${yandex_compute_disk.stor.*.id} позваляли добавлять любые значения включая цифры, 
+# исправленный вариант выглядит так:
 
+  dynamic "secondary_disk" {
+  for_each = yandex_compute_disk.stor.*.id
+  content {
+    disk_id = yandex_compute_disk.stor[secondary_disk.key].id
+  }
+}
+```
