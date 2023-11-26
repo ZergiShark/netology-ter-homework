@@ -210,6 +210,7 @@ null_resource.web_hosts_provision (local-exec): vm-1                       : ok=
 null_resource.web_hosts_provision (local-exec): vm-2                       : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 ### Дополнение к ДЗ:
+1. Исправил ошибку в результате которой, можно было добавлять любые значения в переменные:
 ```
 # Ошибка в том, что ${secondary_disk.key} и ${yandex_compute_disk.stor.*.id} позволяли добавлять любые значения включая цифры, 
 # исправленный вариант выглядит так:
@@ -221,3 +222,4 @@ null_resource.web_hosts_provision (local-exec): vm-2                       : ok=
   }
 }
 ```
+2. Исправил захардкоженные переменные
