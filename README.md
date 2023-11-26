@@ -129,7 +129,7 @@ resource "yandex_compute_instance" "storage" {
 	}
   }
 
-# Ошибка в том, что ${secondary_disk.key} и ${yandex_compute_disk.stor.*.id} позваляли добавлять любые значения включая цифры, 
+# Ошибка в том, что ${secondary_disk.key} и ${yandex_compute_disk.stor.*.id} позволяли добавлять любые значения включая цифры, 
 # исправленный вариант выглядит так:
 
   dynamic "secondary_disk" {
@@ -211,7 +211,7 @@ null_resource.web_hosts_provision (local-exec): vm-2                       : ok=
 ```
 ### Дополнение к ДЗ:
 ```
-# Ошибка в том, что ${secondary_disk.key} и ${yandex_compute_disk.stor.*.id} позваляли добавлять любые значения включая цифры, 
+# Ошибка в том, что ${secondary_disk.key} и ${yandex_compute_disk.stor.*.id} позволяли добавлять любые значения включая цифры, 
 # исправленный вариант выглядит так:
 
   dynamic "secondary_disk" {
