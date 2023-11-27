@@ -1,21 +1,20 @@
 resource "yandex_compute_disk" "stor" {
-  count   = 3
-  name	= "disk-${count.index + 1}"
-  size	= 1
+  count   = var.disk_count
+  name    = "${var.instance_name_disk}-${count.index + 1}-${var.disk_name_prefix}"
+  size    = var.disk_size_gb
 }
 
-
 resource "yandex_compute_instance" "storage" {
-  name = "storage"
+  name = var.instance_name
   resources {
-	cores     	= 2
-	memory    	= 1
-	core_fraction = 5
+    cores        = var.instance_cores
+    memory       = var.instance_memory
+    core_fraction = var.instance_core_fraction
   }
 
   boot_disk {
 	initialize_params {
-  	image_id = "fd8g64rcu9fq5kpfqls0"
+  	image_id = var.image_id
 	}
   }
 
@@ -29,11 +28,11 @@ resource "yandex_compute_instance" "storage" {
 }
 
   network_interface {
-	subnet_id = yandex_vpc_subnet.develop.id
+	subnet_id = var.subnet_id
 	nat   	= true
   }
 
   metadata = {
-	ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
+	ssh-keys = "${var.ssh_user}:${file(var.ssh_key_path)}"
   }
 }

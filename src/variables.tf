@@ -43,3 +43,67 @@ variable "subnet_id" {
 variable "ssh_key_path" {
   default = "~/.ssh/id_rsa.pub"
 }
+
+variable "disk_count" {
+  description = "Количество дисков для создания"
+  type        = number
+  default     = 3
+}
+
+variable "disk_name_prefix" {
+  description = "Префикс имени диска"
+  type        = string
+  default     = "disk"
+}
+
+variable "disk_size_gb" {
+  description = "Размер диска в гигабайтах"
+  type        = number
+  default     = 1
+}
+
+variable "instance_name" {
+  description = "Имя виртуальной машины storage"
+  type        = string
+  default     = "storage"
+}
+
+variable "instance_name_disk" {
+  description = "Имя виртуальной машины disk"
+  type        = string
+  default     = "disk"
+}
+
+variable "instance_cores" {
+  description = "Количество ядер процессора"
+  type        = number
+  default     = 2
+}
+
+variable "instance_memory" {
+  description = "Объем памяти в гигабайтах"
+  type        = number
+  default     = 1
+}
+
+variable "instance_core_fraction" {
+  description = "Доля процессора"
+  type        = number
+  default     = 5
+}
+
+variable "instance_count" {
+  description = "Количество ВМ"
+  type        = number
+  default     = 2
+}
+
+variable "name_prefix" {
+  description = "Prefix for instance name"
+  default     = "develop"
+}
+
+variable "ssh_user" {
+  description = "SSH user for the instance"
+  default     = "ubuntu"
+}
