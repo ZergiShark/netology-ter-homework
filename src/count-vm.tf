@@ -1,10 +1,10 @@
 resource "yandex_compute_instance" "web" {
-  count = 2
-  name = "develop-web-${count.index + 1}"
+  count = var.instance_count
+  name = "${var.name_prefix}-${count.index + 1}"
   resources {
-    cores       = 2
-    memory      = 1
-    core_fraction = 5
+    cores       = var.instance_cores
+    memory      = var.instance_memory
+    core_fraction = var.instance_core_fraction
   }
   boot_disk {
     initialize_params {
@@ -16,6 +16,6 @@ resource "yandex_compute_instance" "web" {
     nat     = true
   }
   metadata = {
-    ssh-keys = "ubuntu:${file(var.ssh_key_path)}"
+    ssh-keys = "${var.ssh_user}:${file(var.ssh_key_path)}"
   }
 }
